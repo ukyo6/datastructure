@@ -1,5 +1,11 @@
 package com.example.hewei.lib;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
+
+import javax.swing.tree.TreeNode;
+
 import jdk.nashorn.internal.ir.BinaryNode;
 
 /**
@@ -238,13 +244,13 @@ public class NodeTreeTest {
             if (findNode(root.right, t2)) {
                 return root;
             } else {
-                return getLastCommonParent(root.left,t1,t2);
+                return getLastCommonParent(root.left, t1, t2);
             }
         } else {
-            if(findNode(root.left,t2)) {
+            if (findNode(root.left, t2)) {
                 return root;
             } else {
-                return getLastCommonParent(root.left,t1,t2);
+                return getLastCommonParent(root.left, t1, t2);
             }
         }
     }
@@ -259,5 +265,85 @@ public class NodeTreeTest {
         }
         return findNode(root.left, node) && findNode(root.right, node);
     }
+
+
+    /**
+     * 二叉树的遍历----------------------------------------------------------------------------------
+     */
+
+    /**
+     * 前序遍历 递归
+     */
+    private ArrayList<Integer> preOrderTraverse1(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        getNode(root, list);
+        return list;
+    }
+
+    private void getNode(TreeNode node, ArrayList<Integer> list) {
+        if (node == null) return;
+
+        list.add(node.val);
+        getNode(node.left, list);
+        getNode(node.right, list);
+    }
+
+    /**
+     * 中序遍历 递归
+     * <p>
+     * 左子树 ---> 根结点 ---> 右子树
+     */
+    private ArrayList<Integer> inOrderTraverse1(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        getNode2(root, list);
+        return list;
+    }
+
+    private void getNode2(TreeNode node, ArrayList<Integer> list) {
+        if (node == null) return;
+
+        getNode2(node.left, list);
+        list.add(node.val);
+        getNode2(node.right, list);
+    }
+
+    /**
+     * 后序遍历 递归
+     * <p>
+     * 左子树 ---> 右子树 ---> 根结点
+     */
+    private ArrayList<Integer> afterTraverse1(TreeNode root) {
+        ArrayList<Integer> list = new ArrayList<>();
+        getNode3(root, list);
+        return list;
+    }
+
+    private void getNode3(TreeNode node, ArrayList<Integer> list) {
+        if (node == null) return;
+
+        getNode3(node.left, list);
+        getNode3(node.right, list);
+        list.add(node.val);
+    }
+
+
+    /**
+     * 前序遍历  迭代
+     */
+    private ArrayList<Integer> preOrderTraverse2(TreeNode root) {
+        int[] B = new int[5];
+    }
+
+    /**
+     * 中序遍历 迭代
+     */
+
+
+    /**
+     * 后序遍历 迭代
+     */
+
+
+
 
 }
